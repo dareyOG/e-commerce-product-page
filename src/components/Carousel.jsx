@@ -19,7 +19,7 @@ function Carousel() {
   };
 
   return (
-    <section className='relative w-auto'>
+    <section className='relative hidden w-auto'>
       {images.map((image, index) => (
         <div key={image.id}>
           <img
@@ -34,13 +34,13 @@ function Carousel() {
           className='relative left-[1.5rem] rounded-[2rem] bg-neutral-white px-3 py-2'
           onClick={handlePrevSlide}
         >
-          <img src='/public/images/icon-previous.svg' />
+          <img src='/images/icon-previous.svg' />
         </button>
         <button
           className='relative right-[1.5rem] rounded-[2rem] bg-neutral-white px-3 py-2'
           onClick={handleNextSlide}
         >
-          <img src='/public/images/icon-next.svg' />
+          <img src='/images/icon-next.svg' />
         </button>
       </div>
     </section>
