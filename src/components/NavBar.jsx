@@ -4,7 +4,7 @@ import cart from "../assets/images/icon-cart.svg";
 
 function NavBar({ toggleMenu }) {
   return (
-    <nav className='flex h-[10rem] items-center justify-between px-20 *:border-b-primary-orange-200 lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:hover:text-neutral-grayishBlue-400'>
+    <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-20 lg:hover:text-neutral-grayishBlue-400'>
       <div className='group flex w-auto items-center justify-between gap-x-[2rem]'>
         <button
           className='w-auto group-has-[button]:cursor-pointer'
