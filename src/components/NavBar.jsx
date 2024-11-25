@@ -12,9 +12,9 @@ function NavBar({ toggleMenu }) {
         >
           <img src={menu} alt='nav menu' className='w-[2rem]' />
         </button>
-        <div className='flex items-center justify-between gap-x-[15rem]'>
+        <div className='flex items-center justify-between gap-x-[5rem]'>
           <img src={logo} alt='logo' className='w-auto' />
-          <ul className='hidden items-center gap-x-[5rem] text-[2rem] *:text-neutral-grayishBlue-300 group-has-[ul]:gap-x-[5rem] lg:flex'>
+          <ul className='hidden items-center gap-x-[2.5rem] text-[2rem] *:text-neutral-grayishBlue-300 group-has-[ul]:gap-x-[5rem] lg:flex'>
             <li className='flex h-[10rem] items-center justify-center hover:border-b-[0.2rem] hover:border-b-primary-orange-200'>
               <a href='' className='hover:text-neutral-grayishBlue-400'>
                 Collections

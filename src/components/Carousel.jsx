@@ -19,7 +19,7 @@ function Carousel() {
   };
 
   return (
-    <section className='relative hidden w-auto'>
+    <section className='relative w-auto'>
       {images.map((image, index) => (
         <div key={image.id}>
           <img
