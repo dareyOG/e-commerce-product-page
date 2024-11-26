@@ -4,17 +4,17 @@ import cart from "../assets/images/icon-cart.svg";
 
 function NavBar({ toggleMenu }) {
   return (
-    <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-20 lg:hover:text-neutral-grayishBlue-400'>
+    <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:mx-[13rem] lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-0 lg:hover:text-neutral-grayishBlue-400'>
       <div className='group flex w-auto items-center justify-between gap-x-[2rem]'>
         <button
-          className='w-auto group-has-[button]:cursor-pointer'
+          className='w-auto group-has-[button]:cursor-pointer lg:hidden'
           onClick={toggleMenu}
         >
           <img src={menu} alt='nav menu' className='w-[2rem]' />
         </button>
         <div className='flex items-center justify-between gap-x-[5rem]'>
           <img src={logo} alt='logo' className='w-auto' />
-          <ul className='hidden items-center gap-x-[2.5rem] text-[2rem] *:text-neutral-grayishBlue-300 group-has-[ul]:gap-x-[5rem] lg:flex'>
+          <ul className='hidden items-center gap-x-[3.5rem] text-[1.8rem] *:text-neutral-grayishBlue-300 lg:flex'>
             <li className='flex h-[10rem] items-center justify-center hover:border-b-[0.2rem] hover:border-b-primary-orange-200'>
               <a href='' className='hover:text-neutral-grayishBlue-400'>
                 Collections
@@ -53,7 +53,7 @@ function NavBar({ toggleMenu }) {
         </div>
         <img
           src=' /images/image-avatar.png'
-          className='w-[4rem] rounded-[50%] border border-neutral-grayishBlue-100 hover:border-primary-orange-200'
+          className='border-transparent w-[4rem] rounded-[50%] border-2 hover:border-primary-orange-200'
         />
       </div>
     </nav>

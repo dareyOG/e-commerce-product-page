@@ -7,6 +7,7 @@ export default {
       bold: 700,
     },
     colors: {
+      transparent: "transparent",
       neutral: {
         white: "hsl(0, 0%, 100%)",
         black: "hsl(0, 0%, 0%)",

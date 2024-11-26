@@ -3,14 +3,14 @@ import icon_delete from "../assets/images/icon-delete.svg";
 
 function FilledBasket() {
   return (
-    <div className='m-8'>
-      <div className='grid-cols-cart mb-8 grid grid-flow-col-dense place-content-between'>
+    <div className='m-8 mb-16 flex flex-col justify-between'>
+      <div className='mb-8 flex items-center justify-between gap-x-5'>
         <img
-          src='/public/images/image-product-1-thumbnail.jpg'
+          src='/images/image-product-1-thumbnail.jpg'
           alt='product-1-thumbnail'
-          className='w-[4rem] rounded-[.5rem]'
+          className='w-[3rem] rounded-[.5rem]'
         />
-        <div className='text-[1.3rem] text-neutral-grayishBlue-300'>
+        <div className='text-[1.25rem] text-neutral-grayishBlue-300'>
           <p>Fall Limited Edition Sneakers</p>
           <span>$125.00 x 3</span>
           <span className='font-bold text-neutral-grayishBlue-400'>
@@ -19,7 +19,7 @@ function FilledBasket() {
           </span>
         </div>
         <button>
-          <img src={icon_delete} />
+          <img src={icon_delete} className='w-[1.5rem]' />
         </button>
       </div>
       <CartButton>Checkout</CartButton>

@@ -4,7 +4,7 @@ import minus from "../assets/images/icon-minus.svg";
 
 import Button from "./CartButton";
 
-function Counter() {
+function ProductCounter() {
   const [value, setValue] = useState(0);
 
   const handleDec = () => {
@@ -19,8 +19,8 @@ function Counter() {
   };
 
   return (
-    <section className='px-10 pb-8'>
-      <div className='mb-8 flex items-center justify-between rounded-[1.5rem] border-neutral-grayishBlue-300 bg-neutral-grayishBlue-100 p-[2.5rem] text-[2rem]'>
+    <section className='mb-8 w-full lg:mb-0 lg:grid lg:grid-flow-col lg:gap-x-6'>
+      <div className='flex items-center justify-between rounded-[1.5rem] border-neutral-grayishBlue-300 bg-neutral-grayishBlue-100 p-[2.5rem] text-[2rem]'>
         <button onClick={handleDec}>
           <img src={minus} alt='decrement' />
         </button>
@@ -48,4 +48,4 @@ function Counter() {
   );
 }
 
-export default Counter;
+export default ProductCounter;
