@@ -26,7 +26,7 @@ function App() {
         </Product>
       </Main>
       <CartModal />
-      {/* <ProductModal /> */}
+      <ProductModal />
     </main>
   );
 }

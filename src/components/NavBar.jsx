@@ -6,12 +6,13 @@ function NavBar({ toggleMenu }) {
   return (
     <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:mx-[13rem] lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-0 lg:hover:text-neutral-grayishBlue-400'>
       <div className='group flex w-auto items-center justify-between gap-x-[2rem]'>
-        <button
+        <div
+          aria-label='menu'
           className='w-auto group-has-[button]:cursor-pointer lg:hidden'
           onClick={toggleMenu}
         >
           <img src={menu} alt='nav menu' className='w-[2rem]' />
-        </button>
+        </div>
         <div className='flex items-center justify-between gap-x-[5rem]'>
           <img src={logo} alt='logo' className='w-auto' />
           <ul className='hidden items-center gap-x-[3.5rem] text-[1.8rem] *:text-neutral-grayishBlue-300 lg:flex'>
