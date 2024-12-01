@@ -2,14 +2,15 @@ import menu from "../assets/images/icon-menu.svg";
 import logo from "../assets/images/logo.svg";
 import cart from "../assets/images/icon-cart.svg";
 
-function NavBar({ toggleMenu }) {
+function NavBar({ handleToggleMenu }) {
   return (
     <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:mx-[13rem] lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-0 lg:hover:text-neutral-grayishBlue-400'>
       <div className='group flex w-auto items-center justify-between gap-x-[2rem]'>
         <div
           aria-label='menu'
+          role='button'
           className='w-auto group-has-[button]:cursor-pointer lg:hidden'
-          onClick={toggleMenu}
+          onClick={handleToggleMenu}
         >
           <img src={menu} alt='nav menu' className='w-[2rem]' />
         </div>
@@ -54,7 +55,7 @@ function NavBar({ toggleMenu }) {
         </div>
         <img
           src=' /images/image-avatar.png'
-          className='border-transparent w-[4rem] rounded-[50%] border-2 hover:border-primary-orange-200'
+          className='rounded-1/2 w-[4rem] border-2 border-transparent hover:border-primary-orange-200'
         />
       </div>
     </nav>

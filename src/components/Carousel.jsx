@@ -1,7 +1,7 @@
 import images from "../images";
 import { useState } from "react";
 
-function Carousel() {
+function Carousel({ handleShowProductModal }) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handlePrevSlide = () => {
@@ -16,11 +16,14 @@ function Carousel() {
     );
   };
 
+  const handleDisplayImage = () => {
+    // setActiveIndex(curr_index=>images.length-1?)
+  };
   return (
-    <section className='flex w-auto flex-col gap-y-[2.5rem] lg:w-[120rem]'>
-      <div className='relative'>
+    <section className='flex w-auto flex-col gap-y-[2.5rem] lg:w-[80rem]'>
+      <div className='relative cursor-pointer'>
         {images.map((image, index) => (
-          <div key={image.id}>
+          <div key={image.id} onClick={handleShowProductModal}>
             <img
               src={image.url}
               alt={`product image-${index + 1}`}
@@ -28,7 +31,7 @@ function Carousel() {
             />
           </div>
         ))}
-        <div className='absolute left-[50%] top-[50%] mx-auto flex w-full translate-x-[-50%] translate-y-[-100%] justify-between'>
+        <div className='absolute left-[50%] top-[50%] mx-auto flex w-full -translate-x-1/2 -translate-y-full justify-between'>
           <button
             className='relative left-[5rem] rounded-[2rem] bg-neutral-white px-3 py-2 lg:hidden'
             onClick={handlePrevSlide}
@@ -45,12 +48,15 @@ function Carousel() {
       </div>
       <div className='hidden lg:flex lg:gap-x-[3rem]'>
         {images.map((image, index) => (
-          <div key={image.id}>
+          <div
+            key={image.id}
+            className={`w-50 ${index === activeIndex ? "border-2 border-primary-orange-200" : "border-neutral-black"} cursor-pointer rounded-[1.5rem] hover:border-transparent`}
+          >
             <img
               src={image.url}
               alt={`product image-${index + 1}`}
-              className={`border-4 ${index === activeIndex ? "border-primary-orange-200 opacity-50" : "border-transparent"} cursor-pointer rounded-[1.2rem]`}
-              onClick={() => {}}
+              className={` ${index === activeIndex ? "border-primary-orange-200 opacity-50" : "border-transparent"} cursor-pointer rounded-[1.2rem]`}
+              // onClick={() => {}}
             />
           </div>
         ))}
@@ -60,3 +66,18 @@ function Carousel() {
 }
 
 export default Carousel;
+
+//   <div
+//   key={image.id}
+//   className={`w-50 ${index === activeIndex ? "border-[2.7px] border-primary-orange-200" : ""} cursor-pointer rounded-[1.5rem] hover:border-transparent`}
+// >
+//   <span
+//     className={`fixed aspect-square w-[18.45%] rounded-[1.25rem] ${index === activeIndex ? "bg-neutral-white opacity-45" : ""} opacity-45 hover:bg-neutral-white`}
+//   ></span>
+//   <img
+//     src={image.url}
+//     alt={`product image-${index + 1}`}
+//     className='rounded-[1.25rem] object-cover'
+//     onClick={() => {}}
+//   />
+// </div>;

@@ -11,7 +11,7 @@ function ProductInfo() {
           Fall Limited Edition <br /> Sneakers
         </h1>
       </header>
-      <p className='py-[2rem] text-[1.4rem] text-neutral-grayishBlue-300 lg:text-[1.5rem]'>
+      <p className='py-[2rem] text-[1.4rem] text-neutral-grayishBlue-300 lg:text-[1.6rem]'>
         {" "}
         These low-profile sneakers are your perfect casual wear companion.
         Featuring a durable rubber outer sole, they’ll withstand everything the

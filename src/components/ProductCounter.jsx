@@ -1,37 +1,36 @@
-import { useState } from "react";
 import plus from "../assets/images/icon-plus.svg";
 import minus from "../assets/images/icon-minus.svg";
 
-import Button from "./CartButton";
+import CartButton from "./CartButton";
 
-function ProductCounter() {
-  const [value, setValue] = useState(0);
+function ProductCounter({ count, setCount, handleAddtoCart }) {
+  const productCount = count;
 
   const handleDec = () => {
-    setValue(value => {
-      if (value < 1) return 0;
-      return value - 1;
+    setCount(count => {
+      if (count < 1) return 0;
+      return count - 1;
     });
   };
 
   const handleInc = () => {
-    setValue(value => value + 1);
+    setCount(count => count + 1);
   };
 
   return (
-    <section className='mb-8 w-full lg:mb-0 lg:grid lg:grid-flow-col lg:gap-x-6'>
-      <div className='flex items-center justify-between rounded-[1.5rem] border-neutral-grayishBlue-300 bg-neutral-grayishBlue-100 p-[2.5rem] text-[2rem]'>
+    <section className='mb-8 grid w-full gap-8 lg:mb-0 lg:grid-flow-col lg:gap-x-8'>
+      <div className='flex items-center justify-between gap-8 rounded-[1.1rem] border-2 border-transparent bg-neutral-grayishBlue-100 p-[1.2rem] lg:px-[2.5rem]'>
         <button onClick={handleDec}>
           <img src={minus} alt='decrement' />
         </button>
-        <p className='font-bold text-neutral-grayishBlue-400'>{value}</p>
+        <p className='font-bold text-neutral-grayishBlue-400'>{productCount}</p>
         <button onClick={handleInc}>
           <img src={plus} alt='increment' />
         </button>
       </div>
-      <Button>
+      <CartButton onclick={handleAddtoCart}>
         <svg
-          className='mr-8 fill-neutral-grayishBlue-400'
+          className='fill-neutral-grayishBlue-400'
           width='22'
           height='20'
           xmlns='http://www.w3.org/2000/svg'
@@ -43,7 +42,7 @@ function ProductCounter() {
           />
         </svg>
         <span>Add to cart</span>
-      </Button>
+      </CartButton>
     </section>
   );
 }

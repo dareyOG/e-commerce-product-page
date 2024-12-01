@@ -1,9 +1,9 @@
-function NavList({ toggleMenu }) {
+function NavList({ handleToggleMenu }) {
   return (
     <nav>
-      <div className='fixed left-0 top-0 z-10 h-[100vh] w-[100vw] bg-neutral-black/50'></div>
-      <div className='fixed top-0 z-30 h-[100vh] w-[67vw] bg-neutral-white pl-10 pt-10'>
-        <button onClick={toggleMenu} className='mt-5'>
+      <div className='fixed left-0 top-0 z-10 h-screen w-screen bg-neutral-black opacity-80'></div>
+      <div className='fixed top-0 z-30 h-screen w-[67vw] bg-neutral-white pl-10 pt-10'>
+        <button onClick={handleToggleMenu} className='mt-5'>
           <img src='/images/icon-close.svg' alt='close menu' />
         </button>
         <ul className='mt-20 flex flex-col gap-[2rem] text-[2rem] font-bold capitalize text-neutral-grayishBlue-400'>

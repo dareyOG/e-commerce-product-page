@@ -1,7 +1,7 @@
 import EmptyBasket from "./EmptyBasket";
 import FilledBasket from "./FilledBasket";
 
-function CartModal({ cartList }) {
+function CartModal({ count, cartlist, handleCheckout }) {
   return (
     <>
       <div className='fixed left-0 top-0 z-10 h-[100vh] w-[100vw] bg-neutral-black/50 lg:hidden'></div>
@@ -9,7 +9,13 @@ function CartModal({ cartList }) {
         <h1 className='border-b border-neutral-grayishBlue-200 p-8 text-[2rem] font-bold text-neutral-grayishBlue-400'>
           Cart
         </h1>
-        <div>{!!!cartList ? <FilledBasket /> : <EmptyBasket />}</div>
+        <div>
+          {!!!cartlist ? (
+            <FilledBasket count={count} handleCheckout={handleCheckout} />
+          ) : (
+            <EmptyBasket />
+          )}
+        </div>
       </section>
     </>
   );
