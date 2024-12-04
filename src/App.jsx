@@ -79,20 +79,24 @@ function App() {
     setIsProductModalActive(false);
   };
 
-  // add to cart
-  const handleAddtoCart = cart => {
-    setCartlist(cartlist => [...cartlist, cart]);
-  };
-
   // checkout
   const handleCheckout = () => {
-    setCartlist([]);
+    // setCartlist([]);
     setIsCartModalActive(false);
   };
 
+  // format currency
+  const formatCurrency = amount =>
+    amount.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+
+  console.log(cartlist);
+
   return (
     <main>
-      <NavBar handleToggleMenu={handleToggleMenu} />
+      <NavBar count={count} handleToggleMenu={handleToggleMenu} />
       {isNavActive && <NavList handleToggleMenu={handleToggleMenu} />}
       <Main>
         <Carousel handleShowProductModal={handleShowProductModal} />
@@ -100,13 +104,18 @@ function App() {
           <ProductInfo />
           <ProductCounter
             count={count}
+            cartlist={cartlist}
             setCount={setCount}
-            handleAddtoCart={handleAddtoCart}
+            setCartlist={setCartlist}
           />
         </Product>
       </Main>
-      {(cartlist || isCartModalActive) && (
-        <CartModal count={count} handleCheckout={handleCheckout} />
+      {isCartModalActive && (
+        <CartModal
+          count={count}
+          handleCheckout={handleCheckout}
+          cartlist={cartlist}
+        />
       )}
       {isProductModalActive && (
         <ProductModal handleRemoveProductModal={handleRemoveProductModal} />

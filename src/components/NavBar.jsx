@@ -2,7 +2,7 @@ import menu from "../assets/images/icon-menu.svg";
 import logo from "../assets/images/logo.svg";
 import cart from "../assets/images/icon-cart.svg";
 
-function NavBar({ handleToggleMenu }) {
+function NavBar({ count, handleToggleMenu }) {
   return (
     <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:mx-[13rem] lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-0 lg:hover:text-neutral-grayishBlue-400'>
       <div className='group flex w-auto items-center justify-between gap-x-[2rem]'>
@@ -49,13 +49,15 @@ function NavBar({ handleToggleMenu }) {
       <div className='flex items-center justify-center gap-x-[2rem] *:cursor-pointer'>
         <div>
           <img src={cart} className='relative' />
-          <p className='absolute top-[2.5rem] translate-x-2 rounded-[4rem] bg-primary-orange-200 px-[1.1rem] py-[0.25rem] text-[0.1rem] text-neutral-white'>
-            3
-          </p>
+          {
+            <p className='absolute top-[2.5rem] translate-x-2 rounded-[4rem] bg-primary-orange-200 px-[1.1rem] py-[0.25rem] text-[0.1rem] text-neutral-white'>
+              {count}
+            </p>
+          }
         </div>
         <img
           src=' /images/image-avatar.png'
-          className='rounded-1/2 w-[4rem] border-2 border-transparent hover:border-primary-orange-200'
+          className='w-[4rem] rounded-full border-2 border-transparent hover:border-primary-orange-200'
         />
       </div>
     </nav>

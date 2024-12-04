@@ -1,21 +1,25 @@
 import CartButton from "./CartButton";
 import icon_delete from "../assets/images/icon-delete.svg";
 
-function FilledBasket({ count, handleCheckout }) {
+function FilledBasket({ cartlist, handleCheckout }) {
+  const { name, thumbnail, quantity, unitPrice, totalPrice } = cartlist;
   return (
     <div className='m-8 mb-16 grid grid-flow-dense gap-y-5'>
       <div className='flex items-center justify-between gap-x-[0.15rem]'>
         <img
-          src='/images/image-product-1-thumbnail.jpg'
+          // src='/images/image-product-1-thumbnail.jpg'
+          src={thumbnail}
           alt='product-1-thumbnail'
           className='w-[4rem] rounded-[.5rem] md:w-[5rem]'
         />
         <div className='text-neutral-grayishBlue-300'>
-          <p>Fall Limited Edition Sneakers</p>
-          <span>$125.00 x {count}</span>
+          <p>{name}</p>
+          <span>
+            {unitPrice} x {quantity}
+          </span>
           <span className='font-bold text-neutral-grayishBlue-400'>
             {" "}
-            $375.00
+            {totalPrice}
           </span>
         </div>
         <button>

@@ -10,8 +10,12 @@ function CartModal({ count, cartlist, handleCheckout }) {
           Cart
         </h1>
         <div>
-          {!!!cartlist ? (
-            <FilledBasket count={count} handleCheckout={handleCheckout} />
+          {cartlist ? (
+            <FilledBasket
+              count={count}
+              cartlist={cartlist}
+              handleCheckout={handleCheckout}
+            />
           ) : (
             <EmptyBasket />
           )}

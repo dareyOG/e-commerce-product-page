@@ -3,9 +3,17 @@ import minus from "../assets/images/icon-minus.svg";
 
 import CartButton from "./CartButton";
 
-function ProductCounter({ count, setCount, handleAddtoCart }) {
+function ProductCounter({ count, cartlist, setCount, setCartlist }) {
   const productCount = count;
 
+  const cartProduct = {
+    name: "fall limited edition sneakers",
+    thumbnail: "/images/image-product-1-thumbnail.jpg",
+    unitPrice: 125,
+    quantity: 1,
+  };
+
+  // decrease product count
   const handleDec = () => {
     setCount(count => {
       if (count < 1) return 0;
@@ -13,12 +21,28 @@ function ProductCounter({ count, setCount, handleAddtoCart }) {
     });
   };
 
+  // increase product count
   const handleInc = () => {
     setCount(count => count + 1);
   };
 
+  // add to cart
+  const handleAddtoCart = cartItem => {
+    if (!productCount) return;
+    const updatedCart = cartlist
+      .map(cartItem => cartItem.name)
+      .includes("fall limited edition sneakers")
+      ? {
+          ...cartItem,
+          quantity: productCount,
+          totalPrice: cartItem.unitPrice * productCount,
+        }
+      : cartItem;
+    setCartlist([updatedCart]);
+  };
+
   return (
-    <section className='mb-8 grid w-full gap-8 lg:mb-0 lg:grid-flow-col lg:gap-x-8'>
+    <section className='mb-8 grid w-full gap-12 lg:mb-0 lg:grid-flow-col lg:gap-x-8'>
       <div className='flex items-center justify-between gap-8 rounded-[1.1rem] border-2 border-transparent bg-neutral-grayishBlue-100 p-[1.2rem] lg:px-[2.5rem]'>
         <button onClick={handleDec}>
           <img src={minus} alt='decrement' />
@@ -28,7 +52,7 @@ function ProductCounter({ count, setCount, handleAddtoCart }) {
           <img src={plus} alt='increment' />
         </button>
       </div>
-      <CartButton onclick={handleAddtoCart}>
+      <CartButton onclick={() => handleAddtoCart(cartProduct)}>
         <svg
           className='fill-neutral-grayishBlue-400'
           width='22'
