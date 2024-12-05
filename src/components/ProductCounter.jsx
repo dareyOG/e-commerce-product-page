@@ -5,12 +5,11 @@ import CartButton from "./CartButton";
 
 function ProductCounter({ count, cartlist, setCount, setCartlist }) {
   const productCount = count;
-
   const cartProduct = {
     name: "fall limited edition sneakers",
     thumbnail: "/images/image-product-1-thumbnail.jpg",
     unitPrice: 125,
-    quantity: 1,
+    quantity: productCount,
   };
 
   // decrease product count
@@ -34,8 +33,7 @@ function ProductCounter({ count, cartlist, setCount, setCartlist }) {
       .includes("fall limited edition sneakers")
       ? {
           ...cartItem,
-          quantity: productCount,
-          totalPrice: cartItem.unitPrice * productCount,
+          totalPrice: cartItem.unitPrice * cartItem.quantity,
         }
       : cartItem;
     setCartlist([updatedCart]);

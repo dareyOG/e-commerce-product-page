@@ -1,7 +1,13 @@
 import EmptyBasket from "./EmptyBasket";
 import FilledBasket from "./FilledBasket";
 
-function CartModal({ count, cartlist, handleCheckout }) {
+function CartModal({
+  count,
+  cartlist,
+  handleCheckout,
+  handleDeleteItem,
+  formatCurrency,
+}) {
   return (
     <>
       <div className='fixed left-0 top-0 z-10 h-[100vh] w-[100vw] bg-neutral-black/50 lg:hidden'></div>
@@ -10,11 +16,13 @@ function CartModal({ count, cartlist, handleCheckout }) {
           Cart
         </h1>
         <div>
-          {cartlist ? (
+          {cartlist.length > 0 ? (
             <FilledBasket
               count={count}
               cartlist={cartlist}
               handleCheckout={handleCheckout}
+              handleDeleteItem={handleDeleteItem}
+              formatCurrency={formatCurrency}
             />
           ) : (
             <EmptyBasket />

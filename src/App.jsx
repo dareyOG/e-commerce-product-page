@@ -74,14 +74,23 @@ function App() {
     setIsProductModalActive(true);
   };
 
+  // toggleCart
+  const handleToggleCart = () => {
+    setIsCartModalActive(show => !show);
+  };
+
   // remove product modal
   const handleRemoveProductModal = () => {
     setIsProductModalActive(false);
   };
 
+  // delete product item
+  const handleDeleteItem = () => {
+    setCartlist([]);
+  };
+
   // checkout
   const handleCheckout = () => {
-    // setCartlist([]);
     setIsCartModalActive(false);
   };
 
@@ -96,25 +105,32 @@ function App() {
 
   return (
     <main>
-      <NavBar count={count} handleToggleMenu={handleToggleMenu} />
+      <NavBar
+        cartlist={cartlist}
+        handleToggleMenu={handleToggleMenu}
+        handleToggleCart={handleToggleCart}
+      />
       {isNavActive && <NavList handleToggleMenu={handleToggleMenu} />}
       <Main>
         <Carousel handleShowProductModal={handleShowProductModal} />
         <Product>
-          <ProductInfo />
+          <ProductInfo formatCurrency={formatCurrency} />
           <ProductCounter
             count={count}
             cartlist={cartlist}
             setCount={setCount}
             setCartlist={setCartlist}
+            formatCurrency={formatCurrency}
           />
         </Product>
       </Main>
       {isCartModalActive && (
         <CartModal
           count={count}
-          handleCheckout={handleCheckout}
           cartlist={cartlist}
+          handleCheckout={handleCheckout}
+          handleDeleteItem={handleDeleteItem}
+          formatCurrency={formatCurrency}
         />
       )}
       {isProductModalActive && (

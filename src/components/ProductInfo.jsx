@@ -1,6 +1,6 @@
 import Carousel from "./Carousel";
 
-function ProductInfo() {
+function ProductInfo({ formatCurrency }) {
   return (
     <section className=''>
       <header className='font-bold'>
@@ -19,13 +19,13 @@ function ProductInfo() {
       </p>
       <div className='flex items-center justify-between font-bold text-neutral-grayishBlue-400 lg:w-fit lg:flex-col lg:items-start lg:justify-start lg:gap-y-4'>
         <div className='flex items-center gap-8'>
-          <span className='text-[3rem]'>$125.00</span>
+          <span className='text-[3rem]'>{formatCurrency(125)}</span>
           <span className='rounded-[0.5rem] bg-neutral-black px-3 py-1 text-[1.5rem] text-neutral-grayishBlue-100'>
             50%
           </span>
         </div>
         <div className='text-[2rem] text-neutral-grayishBlue-300 line-through'>
-          $250.00
+          {formatCurrency(250)}
         </div>
       </div>
     </section>
