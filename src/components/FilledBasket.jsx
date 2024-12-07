@@ -1,12 +1,7 @@
 import CartButton from "./CartButton";
 import icon_delete from "../assets/images/icon-delete.svg";
 
-function FilledBasket({
-  cartlist,
-  handleCheckout,
-  handleDeleteItem,
-  formatCurrency,
-}) {
+function FilledBasket({ cartlist, dispatch, formatCurrency }) {
   const { name, thumbnail, quantity, unitPrice, totalPrice } = cartlist.at(0);
 
   return (
@@ -27,11 +22,13 @@ function FilledBasket({
             {formatCurrency(totalPrice || quantity * unitPrice)}
           </span>
         </div>
-        <button onClick={handleDeleteItem}>
+        <button onClick={() => dispatch({ type: "delete_product_from_cart" })}>
           <img src={icon_delete} className='w-[1.5rem]' />
         </button>
       </div>
-      <CartButton onclick={handleCheckout}>Checkout</CartButton>
+      <CartButton onclick={() => dispatch({ type: "checkout" })}>
+        Checkout
+      </CartButton>
     </div>
   );
 }

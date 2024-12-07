@@ -1,20 +1,12 @@
 import images from "../images";
 import { useState } from "react";
 
-function ProductModal({ handleRemoveProductModal }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const handlePrevSlide = () => {
-    setActiveIndex(curr_index =>
-      curr_index === 0 ? images.length - 1 : curr_index - 1,
-    );
-  };
-
-  const handleNextSlide = () => {
-    setActiveIndex(curr_index =>
-      curr_index === images.length - 1 ? 0 : curr_index + 1,
-    );
-  };
+function ProductModal({
+  activeIndex,
+  handlePrevSlide,
+  handleNextSlide,
+  handleRemoveProductModal,
+}) {
   return (
     <div className='hidden lg:block'>
       <div className='fixed left-0 top-0 z-30 h-screen w-screen bg-neutral-black opacity-85'></div>

@@ -1,29 +1,19 @@
 import images from "../images";
-import { useState } from "react";
 
-function Carousel({ handleShowProductModal }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-
+function Carousel({ activeIndex, dispatch }) {
   const handlePrevSlide = () => {
-    setActiveIndex(curr_index =>
-      curr_index === 0 ? images.length - 1 : curr_index - 1,
-    );
+    dispatch({ type: "previous_slide" });
   };
 
   const handleNextSlide = () => {
-    setActiveIndex(curr_index =>
-      curr_index === images.length - 1 ? 0 : curr_index + 1,
-    );
+    dispatch({ type: "next_slide" });
   };
 
-  const handleDisplayImage = () => {
-    // setActiveIndex(curr_index=>images.length-1?)
-  };
   return (
     <section className='flex w-auto flex-col gap-y-[2.5rem] lg:w-[80rem]'>
       <div className='relative cursor-pointer'>
         {images.map((image, index) => (
-          <div key={image.id} onClick={handleShowProductModal}>
+          <div key={image.id} onClick={() => {}}>
             <img
               src={image.url}
               alt={`product image-${index + 1}`}

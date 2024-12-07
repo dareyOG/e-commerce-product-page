@@ -2,7 +2,15 @@ import menu from "../assets/images/icon-menu.svg";
 import logo from "../assets/images/logo.svg";
 import cart from "../assets/images/icon-cart.svg";
 
-function NavBar({ cartlist, handleToggleMenu, handleToggleCart }) {
+function NavBar({ cartlist, dispatch }) {
+  const handleToggleMenu = () => {
+    dispatch({ type: "toggle_navMenu" });
+  };
+
+  const handleToggleCart = () => {
+    dispatch({ type: "toggle_cart" });
+  };
+
   return (
     <nav className='flex h-[10rem] items-center justify-between p-10 *:border-b-primary-orange-200 lg:mx-[13rem] lg:border-b-[0.1rem] lg:border-neutral-grayishBlue-200 lg:px-0 lg:hover:text-neutral-grayishBlue-400'>
       <div className='group flex w-auto items-center justify-between gap-x-[2rem]'>
@@ -39,7 +47,7 @@ function NavBar({ cartlist, handleToggleMenu, handleToggleCart }) {
       <div className='flex items-center justify-center gap-x-[2rem] *:cursor-pointer'>
         <div onClick={handleToggleCart}>
           <img src={cart} className='relative' />
-          {cartlist.length > 0 && (
+          {cartlist?.length > 0 && (
             <div className='absolute top-[2.5rem] translate-x-2 rounded-[4rem] bg-primary-orange-200 px-[1.1rem] py-[0.25rem] text-[0.1rem] text-neutral-white'>
               {cartlist.at(0).quantity}
             </div>

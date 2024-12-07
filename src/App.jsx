@@ -7,92 +7,171 @@ import ProductInfo from "./components/ProductInfo";
 import ProductCounter from "./components/ProductCounter";
 import CartModal from "./components/CartModal";
 import ProductModal from "./components/ProductModal";
+import images from "./images";
 import { useReducer, useState } from "react";
 
 function App() {
-  // const initialState = {
-  //   isNavActive: false,
-  //   value: 0,
-  //   cartList: [],
-  //   isProductModalActive: false,
-  // };
-
-  // function reducer(state, action) {
-  //   switch (action.type) {
-  //     case "toggle_Nav":
-  //       return { ...state, isNavActive: action.payload };
-
-  //     case "increase_count":
-  //       return { ...state };
-
-  //     case "decrease_count":
-  //       return { ...state };
-
-  //     case "add_product_to_cart":
-  //       return {
-  //         ...state,
-  //         cartList: [...state.cartList, action.payload],
-  //       };
-
-  //     case "remove_product_from_cart":
-  //       return { ...state, cartList: [] };
-
-  //     case "open_product_modal":
-  //       return { ...state, isProductModalActive: true };
-
-  //     case "close_product_modal":
-  //       return { ...state, isProductModalActive: false };
-
-  //     default:
-  //       throw new Error("unknown action");
-  //   }
-  // }
-
-  // const [{ isNavActive, value, cartList, isProductModalActive }, dispatch] =
-  //   useReducer(reducer, initialState);
-
-  // cartList = {
-  //   img,
-  //   name,
-  //   price,
-  //   quantity,
-  // };
-
-  const [isNavActive, setIsNavActive] = useState(false);
-  const [count, setCount] = useState(0);
-  const [isProductModalActive, setIsProductModalActive] = useState(false);
-  const [isCartModalActive, setIsCartModalActive] = useState(false);
-  const [cartlist, setCartlist] = useState([]);
-
-  // toggle menu
-  const handleToggleMenu = () => {
-    setIsNavActive(nav => !nav);
+  const initialState = {
+    isNavActive: false,
+    count: 0,
+    activeIndex: 0,
+    cartlist: [],
+    isProductModalActive: false,
+    isCartModalActive: false,
   };
+
+  function reducer(state, action) {
+    switch (action.type) {
+      case "toggle_navMenu":
+        return {
+          ...state,
+          isNavActive: state.isNavActive ? false : true,
+        };
+
+      case "previous_slide":
+        return {
+          ...state,
+          activeIndex:
+            state.activeIndex === 0 ? images.length - 1 : state.activeIndex - 1,
+        };
+
+      case "next_slide":
+        return {
+          ...state,
+          activeIndex:
+            state.activeIndex === images.length - 1 ? 0 : state.activeIndex + 1,
+        };
+
+      case "increase_count":
+        return { ...state, count: state.count + 1 };
+
+      case "decrease_count":
+        return { ...state, count: state.count < 1 ? 0 : state.count - 1 };
+
+      // case "add_product_to_cart":
+      //   if (!state.count) return;
+      //   const updatedCart = state.cartlist?.slice().map(cartItem => {
+      //     return cartItem.name.toLowerCase() ===
+      //       action.payload.name.toLowerCase()
+      //       ? {
+      //           ...cartItem,
+      //           totalPrice: cartItem.unitPrice * cartItem.quantity,
+      //         }
+      //       : cartItem;
+      //   });
+      //   return {
+      //     ...state,
+      //     cartlist: [...state.cartlist, updatedCart],
+      //   };
+
+      // case "delete_product_from_cart":
+      //   return { ...state, count: 0, cartList: [] };
+
+      case "toggle_cart": {
+        return {
+          ...state,
+          isCartModalActive: state.isCartModalActive ? false : true,
+        };
+      }
+
+      // case "toggle_product_modal":
+      //   return {
+      //     ...state,
+      //     isProductModalActive: state.isProductModalActive ? false : true,
+      //   };
+
+      // case "checkout":
+      //   return { ...state, isCartModalActive: false };
+
+      default:
+        throw new Error("unknown action");
+    }
+  }
+
+  const [
+    {
+      isNavActive,
+      count,
+      activeIndex,
+      cartlist,
+      isProductModalActive,
+      isCartModalActive,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
+
+  // const [isNavActive, setIsNavActive] = useState(false);
+  // const [count, setCount] = useState(0);
+  // const [activeIndex, setActiveIndex] = useState(0);
+  // const [isProductModalActive, setIsProductModalActive] = useState(false);
+  // const [isCartModalActive, setIsCartModalActive] = useState(false);
+  // const [cartlist, setCartlist] = useState([]);
+
+  // decrease product count
+  // const handleDec = () => {
+  //   setCount(count => {
+  //     if (count < 1) return 0;
+  //     return count - 1;
+  //   });
+  // };
+
+  // increase product count
+  // const handleInc = () => {
+  //   setCount(count => count + 1);
+  // };
+
+  // add to cart
+  // const handleAddtoCart = cartItem => {
+  //   if (!productCount) return;
+  //   const updatedCart = cartlist
+  //     .map(cartItem => cartItem.name)
+  //     .includes("fall limited edition sneakers")
+  //     ? {
+  //         ...cartItem,
+  //         totalPrice: cartItem.unitPrice * cartItem.quantity,
+  //       }
+  //     : cartItem;
+  //   setCartlist([updatedCart]);
+  // };
+
+  // prevSlide
+  // const handlePrevSlide = () => {
+  //   setActiveIndex(curr_index =>
+  //     curr_index === 0 ? images.length - 1 : curr_index - 1,
+  //   );
+  // };
+
+  // nextSlide
+  // const handleNextSlide = () => {
+  //   setActiveIndex(curr_index =>
+  //     curr_index === images.length - 1 ? 0 : curr_index + 1,
+  //   );
+  // };
 
   // show product modal
-  const handleShowProductModal = () => {
-    setIsProductModalActive(true);
-  };
+  // const handleShowProductModal = () => {
+  //   setIsProductModalActive(true);
+  // };
 
-  // toggleCart
-  const handleToggleCart = () => {
-    setIsCartModalActive(show => !show);
-  };
+  // toggleCart;
+  // const handleToggleCart = () => {
+  // setIsCartModalActive(show => !show);
+  // };
 
   // remove product modal
-  const handleRemoveProductModal = () => {
-    setIsProductModalActive(false);
-  };
+  // const handleRemoveProductModal = () => {
+  //   setIsProductModalActive(false);
+  // };
 
   // delete product item
-  const handleDeleteItem = () => {
-    setCartlist([]);
-  };
+  // const handleDeleteItem = () => {
+  //   setCartlist([]);
+  // };
 
   // checkout
-  const handleCheckout = () => {
-    setIsCartModalActive(false);
-  };
+  // const handleCheckout = () => {
+  //   setIsCartModalActive(false);
+  // };
 
   // format currency
   const formatCurrency = amount =>
@@ -101,41 +180,21 @@ function App() {
       currency: "USD",
     });
 
-  console.log(cartlist);
-
   return (
     <main>
-      <NavBar
-        cartlist={cartlist}
-        handleToggleMenu={handleToggleMenu}
-        handleToggleCart={handleToggleCart}
-      />
-      {isNavActive && <NavList handleToggleMenu={handleToggleMenu} />}
+      <NavBar cartlist={cartlist} dispatch={dispatch} />
+      {isNavActive && <NavList dispatch={dispatch} />}
       <Main>
-        <Carousel handleShowProductModal={handleShowProductModal} />
+        <Carousel activeIndex={activeIndex} dispatch={dispatch} />
         <Product>
           <ProductInfo formatCurrency={formatCurrency} />
-          <ProductCounter
-            count={count}
-            cartlist={cartlist}
-            setCount={setCount}
-            setCartlist={setCartlist}
-            formatCurrency={formatCurrency}
-          />
+          <ProductCounter count={count} />
         </Product>
       </Main>
       {isCartModalActive && (
-        <CartModal
-          count={count}
-          cartlist={cartlist}
-          handleCheckout={handleCheckout}
-          handleDeleteItem={handleDeleteItem}
-          formatCurrency={formatCurrency}
-        />
+        <CartModal cartlist={cartlist} formatCurrency={formatCurrency} />
       )}
-      {isProductModalActive && (
-        <ProductModal handleRemoveProductModal={handleRemoveProductModal} />
-      )}
+      {isProductModalActive && <ProductModal activeIndex={activeIndex} />}
     </main>
   );
 }

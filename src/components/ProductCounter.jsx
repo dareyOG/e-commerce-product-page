@@ -3,8 +3,9 @@ import minus from "../assets/images/icon-minus.svg";
 
 import CartButton from "./CartButton";
 
-function ProductCounter({ count, cartlist, setCount, setCartlist }) {
+function ProductCounter({ count, dispatch }) {
   const productCount = count;
+
   const cartProduct = {
     name: "fall limited edition sneakers",
     thumbnail: "/images/image-product-1-thumbnail.jpg",
@@ -12,45 +13,30 @@ function ProductCounter({ count, cartlist, setCount, setCartlist }) {
     quantity: productCount,
   };
 
-  // decrease product count
-  const handleDec = () => {
-    setCount(count => {
-      if (count < 1) return 0;
-      return count - 1;
-    });
+  const handleDecrease = () => {
+    dispatch({ type: "decrease_count" });
   };
 
-  // increase product count
-  const handleInc = () => {
-    setCount(count => count + 1);
+  const handleIncrease = () => {
+    dispatch({ type: "increase_count" });
   };
 
-  // add to cart
-  const handleAddtoCart = cartItem => {
-    if (!productCount) return;
-    const updatedCart = cartlist
-      .map(cartItem => cartItem.name)
-      .includes("fall limited edition sneakers")
-      ? {
-          ...cartItem,
-          totalPrice: cartItem.unitPrice * cartItem.quantity,
-        }
-      : cartItem;
-    setCartlist([updatedCart]);
+  const addToCart = () => {
+    dispatch({ type: "add_product_to_cart", payload: cartProduct });
   };
 
   return (
     <section className='mb-8 grid w-full gap-12 lg:mb-0 lg:grid-flow-col lg:gap-x-8'>
       <div className='flex items-center justify-between gap-8 rounded-[1.1rem] border-2 border-transparent bg-neutral-grayishBlue-100 p-[1.2rem] lg:px-[2.5rem]'>
-        <button onClick={handleDec}>
+        <button onClick={handleDecrease}>
           <img src={minus} alt='decrement' />
         </button>
         <p className='font-bold text-neutral-grayishBlue-400'>{productCount}</p>
-        <button onClick={handleInc}>
+        <button onClick={handleIncrease}>
           <img src={plus} alt='increment' />
         </button>
       </div>
-      <CartButton onclick={() => handleAddtoCart(cartProduct)}>
+      <CartButton onClick={addToCart}>
         <svg
           className='fill-neutral-grayishBlue-400'
           width='22'

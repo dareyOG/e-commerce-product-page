@@ -1,4 +1,7 @@
-function NavList({ handleToggleMenu }) {
+function NavList({ dispatch }) {
+  const handleToggleMenu = () => {
+    dispatch({ type: "toggle_navMenu" });
+  };
   return (
     <nav>
       <div className='fixed left-0 top-0 z-10 h-screen w-screen bg-neutral-black opacity-80'></div>
