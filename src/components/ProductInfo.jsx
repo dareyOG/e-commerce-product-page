@@ -1,6 +1,6 @@
-import Carousel from "./Carousel";
+import formatCurrency from "../formatCurrency";
 
-function ProductInfo({ formatCurrency }) {
+function ProductInfo() {
   return (
     <section className=''>
       <header className='font-bold'>

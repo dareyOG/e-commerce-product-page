@@ -1,17 +1,9 @@
+import { useSneaker } from "../context/SneakerContext";
 import images from "../images";
 
-function ProductModal({ activeIndex, dispatch }) {
-  const handlePrevSlide = () => {
-    dispatch({ type: "previous_slide" });
-  };
+function ProductModal() {
+  const { activeIndex, dispatch } = useSneaker();
 
-  const handleNextSlide = () => {
-    dispatch({ type: "next_slide" });
-  };
-
-  const handleToggleProductModal = () => {
-    dispatch({ type: "toggle_product_modal" });
-  };
   return (
     <div className='hidden lg:block'>
       <div className='fixed left-0 top-0 z-30 h-screen w-screen bg-neutral-black opacity-85'></div>
@@ -21,7 +13,9 @@ function ProductModal({ activeIndex, dispatch }) {
             role='button'
             aria-label='close modal'
             className='flex items-center justify-end'
-            onClick={handleToggleProductModal}
+            onClick={() => {
+              dispatch({ type: "toggle_product_modal" });
+            }}
           >
             <img src='/images/icon-close.svg' alt='close' />
           </div>
@@ -39,13 +33,17 @@ function ProductModal({ activeIndex, dispatch }) {
           <div className='absolute left-1/2 top-1/2 mx-auto flex w-full -translate-x-1/2 -translate-y-1/2 justify-between'>
             <button
               className='relative left-[-2.5%] rounded-[2rem] bg-neutral-white px-3 py-2'
-              onClick={handlePrevSlide}
+              onClick={() => {
+                dispatch({ type: "previous_slide" });
+              }}
             >
               <img src='/images/icon-previous.svg' />
             </button>
             <button
               className='relative right-[-2.5%] rounded-[2rem] bg-neutral-white px-3 py-2'
-              onClick={handleNextSlide}
+              onClick={() => {
+                dispatch({ type: "next_slide" });
+              }}
             >
               <img src='/images/icon-next.svg' />
             </button>

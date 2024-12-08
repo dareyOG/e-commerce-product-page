@@ -2,8 +2,11 @@ import plus from "../assets/images/icon-plus.svg";
 import minus from "../assets/images/icon-minus.svg";
 
 import CartButton from "./CartButton";
+import { useSneaker } from "../context/SneakerContext";
 
-function ProductCounter({ count, dispatch }) {
+function ProductCounter() {
+  const { count, dispatch } = useSneaker();
+
   const productCount = count;
 
   const cartProduct = {
@@ -13,30 +16,30 @@ function ProductCounter({ count, dispatch }) {
     quantity: productCount,
   };
 
-  const handleDecrease = () => {
-    dispatch({ type: "decrease_count" });
-  };
-
-  const handleIncrease = () => {
-    dispatch({ type: "increase_count" });
-  };
-
-  const addToCart = () => {
-    dispatch({ type: "add_product_to_cart", payload: cartProduct });
-  };
-
   return (
     <section className='mb-8 grid w-full gap-12 lg:mb-0 lg:grid-flow-col lg:gap-x-8'>
       <div className='flex items-center justify-between gap-8 rounded-[1.1rem] border-2 border-transparent bg-neutral-grayishBlue-100 p-[1.2rem] lg:px-[2.5rem]'>
-        <button onClick={handleDecrease}>
+        <button
+          onClick={() => {
+            dispatch({ type: "decrease_count" });
+          }}
+        >
           <img src={minus} alt='decrement' />
         </button>
         <p className='font-bold text-neutral-grayishBlue-400'>{productCount}</p>
-        <button onClick={handleIncrease}>
+        <button
+          onClick={() => {
+            dispatch({ type: "increase_count" });
+          }}
+        >
           <img src={plus} alt='increment' />
         </button>
       </div>
-      <CartButton onClick={addToCart}>
+      <CartButton
+        onClick={() => {
+          dispatch({ type: "add_product_to_cart", payload: cartProduct });
+        }}
+      >
         <svg
           className='fill-neutral-grayishBlue-400'
           width='22'

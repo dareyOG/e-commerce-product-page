@@ -1,26 +1,19 @@
+import { useSneaker } from "../context/SneakerContext";
 import images from "../images";
 
-function Carousel({ activeIndex, dispatch }) {
-  const handlePrevSlide = () => {
-    dispatch({ type: "previous_slide" });
-  };
-
-  const handleNextSlide = () => {
-    dispatch({ type: "next_slide" });
-  };
-
-  const handleToggleProductModal = () => {
-    dispatch({ type: "toggle_product_modal" });
-  };
+function Carousel() {
+  const { activeIndex, dispatch } = useSneaker();
 
   return (
     <section className='flex w-auto flex-col gap-y-[2.5rem] lg:w-[80rem]'>
       <div
         className='relative cursor-pointer'
-        onClick={handleToggleProductModal}
+        onClick={() => {
+          dispatch({ type: "toggle_product_modal" });
+        }}
       >
         {images.map((image, index) => (
-          <div key={image.id} onClick={() => {}}>
+          <div key={image.id}>
             <img
               src={image.url}
               alt={`product image-${index + 1}`}
@@ -31,13 +24,17 @@ function Carousel({ activeIndex, dispatch }) {
         <div className='absolute left-[50%] top-[50%] mx-auto flex w-full -translate-x-1/2 -translate-y-full justify-between'>
           <button
             className='relative left-[5rem] rounded-[2rem] bg-neutral-white px-3 py-2 lg:hidden'
-            onClick={handlePrevSlide}
+            onClick={() => {
+              dispatch({ type: "previous_slide" });
+            }}
           >
             <img src='/images/icon-previous.svg' />
           </button>
           <button
             className='relative right-[5rem] rounded-[2rem] bg-neutral-white px-3 py-2 lg:hidden'
-            onClick={handleNextSlide}
+            onClick={() => {
+              dispatch({ type: "next_slide" });
+            }}
           >
             <img src='/images/icon-next.svg' />
           </button>
