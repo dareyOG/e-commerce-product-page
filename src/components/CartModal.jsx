@@ -1,7 +1,15 @@
 import EmptyBasket from "./EmptyBasket";
 import FilledBasket from "./FilledBasket";
 
-function CartModal({ cartlist, formatCurrency }) {
+function CartModal({ cartlist, dispatch, formatCurrency }) {
+  const handleDeleteProduct = () => {
+    dispatch({ type: "delete_product_from_cart", payload: cartlist.at(0) });
+  };
+
+  const handleCheckout = () => {
+    dispatch({ type: "checkout" });
+  };
+
   return (
     <section>
       <div className='fixed left-0 top-0 z-10 h-[100vh] w-[100vw] bg-neutral-black/50 lg:hidden'></div>
@@ -11,7 +19,12 @@ function CartModal({ cartlist, formatCurrency }) {
         </h1>
         <div>
           {cartlist?.length > 0 ? (
-            <FilledBasket cartlist={cartlist} formatCurrency={formatCurrency} />
+            <FilledBasket
+              cartlist={cartlist}
+              handleDeleteProduct={handleDeleteProduct}
+              handleCheckout={handleCheckout}
+              formatCurrency={formatCurrency}
+            />
           ) : (
             <EmptyBasket />
           )}

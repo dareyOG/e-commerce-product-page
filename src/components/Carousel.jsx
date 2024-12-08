@@ -9,9 +9,16 @@ function Carousel({ activeIndex, dispatch }) {
     dispatch({ type: "next_slide" });
   };
 
+  const handleToggleProductModal = () => {
+    dispatch({ type: "toggle_product_modal" });
+  };
+
   return (
     <section className='flex w-auto flex-col gap-y-[2.5rem] lg:w-[80rem]'>
-      <div className='relative cursor-pointer'>
+      <div
+        className='relative cursor-pointer'
+        onClick={handleToggleProductModal}
+      >
         {images.map((image, index) => (
           <div key={image.id} onClick={() => {}}>
             <img

@@ -48,24 +48,20 @@ function App() {
       case "decrease_count":
         return { ...state, count: state.count < 1 ? 0 : state.count - 1 };
 
-      // case "add_product_to_cart":
-      //   if (!state.count) return;
-      //   const updatedCart = state.cartlist?.slice().map(cartItem => {
-      //     return cartItem.name.toLowerCase() ===
-      //       action.payload.name.toLowerCase()
-      //       ? {
-      //           ...cartItem,
-      //           totalPrice: cartItem.unitPrice * cartItem.quantity,
-      //         }
-      //       : cartItem;
-      //   });
-      //   return {
-      //     ...state,
-      //     cartlist: [...state.cartlist, updatedCart],
-      //   };
+      case "add_product_to_cart":
+        return {
+          ...state,
+          cartlist: state.count ? [action.payload] : [],
+        };
 
-      // case "delete_product_from_cart":
-      //   return { ...state, count: 0, cartList: [] };
+      case "delete_product_from_cart":
+        return {
+          ...state,
+          count: 0,
+          cartlist: state.cartlist.filter(
+            cartedProduct => cartedProduct.name !== action.payload.name,
+          ),
+        };
 
       case "toggle_cart": {
         return {
@@ -74,14 +70,14 @@ function App() {
         };
       }
 
-      // case "toggle_product_modal":
-      //   return {
-      //     ...state,
-      //     isProductModalActive: state.isProductModalActive ? false : true,
-      //   };
+      case "toggle_product_modal":
+        return {
+          ...state,
+          isProductModalActive: state.isProductModalActive ? false : true,
+        };
 
-      // case "checkout":
-      //   return { ...state, isCartModalActive: false };
+      case "checkout":
+        return { ...state, isCartModalActive: false };
 
       default:
         throw new Error("unknown action");
@@ -101,6 +97,7 @@ function App() {
   ] = useReducer(reducer, initialState);
 
   // const [isNavActive, setIsNavActive] = useState(false);
+
   // const [count, setCount] = useState(0);
   // const [activeIndex, setActiveIndex] = useState(0);
   // const [isProductModalActive, setIsProductModalActive] = useState(false);
@@ -174,6 +171,7 @@ function App() {
   // };
 
   // format currency
+
   const formatCurrency = amount =>
     amount.toLocaleString("en-US", {
       style: "currency",
@@ -188,13 +186,19 @@ function App() {
         <Carousel activeIndex={activeIndex} dispatch={dispatch} />
         <Product>
           <ProductInfo formatCurrency={formatCurrency} />
-          <ProductCounter count={count} />
+          <ProductCounter count={count} dispatch={dispatch} />
         </Product>
       </Main>
       {isCartModalActive && (
-        <CartModal cartlist={cartlist} formatCurrency={formatCurrency} />
+        <CartModal
+          cartlist={cartlist}
+          dispatch={dispatch}
+          formatCurrency={formatCurrency}
+        />
       )}
-      {isProductModalActive && <ProductModal activeIndex={activeIndex} />}
+      {isProductModalActive && (
+        <ProductModal activeIndex={activeIndex} dispatch={dispatch} />
+      )}
     </main>
   );
 }

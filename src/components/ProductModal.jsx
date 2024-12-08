@@ -1,12 +1,17 @@
 import images from "../images";
-import { useState } from "react";
 
-function ProductModal({
-  activeIndex,
-  handlePrevSlide,
-  handleNextSlide,
-  handleRemoveProductModal,
-}) {
+function ProductModal({ activeIndex, dispatch }) {
+  const handlePrevSlide = () => {
+    dispatch({ type: "previous_slide" });
+  };
+
+  const handleNextSlide = () => {
+    dispatch({ type: "next_slide" });
+  };
+
+  const handleToggleProductModal = () => {
+    dispatch({ type: "toggle_product_modal" });
+  };
   return (
     <div className='hidden lg:block'>
       <div className='fixed left-0 top-0 z-30 h-screen w-screen bg-neutral-black opacity-85'></div>
@@ -16,12 +21,9 @@ function ProductModal({
             role='button'
             aria-label='close modal'
             className='flex items-center justify-end'
+            onClick={handleToggleProductModal}
           >
-            <img
-              src='/images/icon-close.svg'
-              alt='close'
-              onClick={handleRemoveProductModal}
-            />
+            <img src='/images/icon-close.svg' alt='close' />
           </div>
           <div className=''>
             {images.map((image, index) => (
