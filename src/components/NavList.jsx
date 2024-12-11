@@ -1,4 +1,5 @@
 import { useSneaker } from "../context/SneakerContext";
+import { X } from "lucide-react";
 
 function NavList() {
   const { dispatch } = useSneaker();
@@ -12,7 +13,7 @@ function NavList() {
           }}
           className='mt-5'
         >
-          <img src='/images/icon-close.svg' alt='close menu' />
+          <X className='size-8' />
         </button>
         <ul className='mt-20 flex flex-col gap-[2rem] text-[2rem] font-bold capitalize text-neutral-grayishBlue-400'>
           <li>

@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useSneaker } from "../context/SneakerContext";
 import images from "../images";
 
@@ -23,20 +24,20 @@ function Carousel() {
         ))}
         <div className='absolute left-[50%] top-[50%] mx-auto flex w-full -translate-x-1/2 -translate-y-full justify-between'>
           <button
-            className='relative left-[5rem] rounded-[2rem] bg-neutral-white px-3 py-2 lg:hidden'
+            className='relative left-[3rem] rounded-full bg-neutral-white p-2 lg:hidden'
             onClick={() => {
               dispatch({ type: "previous_slide" });
             }}
           >
-            <img src='/images/icon-previous.svg' />
+            <ChevronLeft className='size-8 stroke-[3px] hover:stroke-primary-orange-200' />
           </button>
           <button
-            className='relative right-[5rem] rounded-[2rem] bg-neutral-white px-3 py-2 lg:hidden'
+            className='relative right-[3rem] rounded-[2rem] bg-neutral-white p-2 lg:hidden'
             onClick={() => {
               dispatch({ type: "next_slide" });
             }}
           >
-            <img src='/images/icon-next.svg' />
+            <ChevronRight className='size-8 stroke-[3px] hover:stroke-primary-orange-200' />
           </button>
         </div>
       </div>
@@ -44,13 +45,15 @@ function Carousel() {
         {images.map((image, index) => (
           <div
             key={image.id}
-            className={`w-50 ${index === activeIndex ? "border-2 border-primary-orange-200" : "border-neutral-black"} cursor-pointer rounded-[1.5rem] hover:border-transparent`}
+            className={`w-24 ${index === activeIndex ? "border-[2.67px] border-primary-orange-200" : "border-transparent"} cursor-pointer rounded-[1.8rem]`}
+            onClick={() => {
+              dispatch({ type: "show_image", payload: index });
+            }}
           >
             <img
-              src={image.url}
-              alt={`product image-${index + 1}`}
-              className={` ${index === activeIndex ? "border-primary-orange-200 opacity-50" : "border-transparent"} cursor-pointer rounded-[1.2rem]`}
-              // onClick={() => {}}
+              src={image.thumbnail}
+              alt={`product thumbnail-${index + 1}`}
+              className={` ${index === activeIndex ? "border-primary-orange-200 opacity-50" : "border-transparent hover:opacity-50"} rounded-[1.5rem]`}
             />
           </div>
         ))}
@@ -60,18 +63,3 @@ function Carousel() {
 }
 
 export default Carousel;
-
-//   <div
-//   key={image.id}
-//   className={`w-50 ${index === activeIndex ? "border-[2.7px] border-primary-orange-200" : ""} cursor-pointer rounded-[1.5rem] hover:border-transparent`}
-// >
-//   <span
-//     className={`fixed aspect-square w-[18.45%] rounded-[1.25rem] ${index === activeIndex ? "bg-neutral-white opacity-45" : ""} opacity-45 hover:bg-neutral-white`}
-//   ></span>
-//   <img
-//     src={image.url}
-//     alt={`product image-${index + 1}`}
-//     className='rounded-[1.25rem] object-cover'
-//     onClick={() => {}}
-//   />
-// </div>;

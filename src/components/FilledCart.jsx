@@ -1,24 +1,24 @@
-import CartButton from "./CartButton";
-import icon_delete from "../assets/images/icon-delete.svg";
-import formatCurrency from "../formatCurrency";
 import { useSneaker } from "../context/SneakerContext";
+import CartButton from "./CartButton";
+import formatCurrency from "../formatCurrency";
+import { Trash2 } from "lucide-react";
 
 function FilledBasket() {
   const { cartlist, dispatch } = useSneaker();
 
   return (
-    <div className='m-8 mb-16 grid grid-flow-dense gap-y-5'>
-      <div className='flex items-center justify-between gap-x-[0.15rem]'>
+    <div className='m-8 grid grid-flow-dense gap-y-9'>
+      <div className='flex items-center justify-between gap-x-[0.2rem]'>
         <img
           src={cartlist.at(0).thumbnail}
           alt='product-1-thumbnail'
-          className='w-[4rem] rounded-[.5rem] md:w-[5rem]'
+          className='w-[4rem] rounded-[.5rem]'
         />
-        <div className='capitalize text-neutral-grayishBlue-300'>
+        <div className='text-[1.25rem] capitalize text-neutral-grayishBlue-300 lg:text-[1.6rem]'>
           <p>{cartlist.at(0).name}</p>
           <span>
             {formatCurrency(cartlist.at(0).unitPrice)}{" "}
-            <span className='text-[0.8rem]'>x</span> {cartlist.at(0).quantity}
+            <span className='text-[0.5rem]'>x</span> {cartlist.at(0).quantity}
           </span>
           <span className='font-bold text-neutral-grayishBlue-400'>
             {" "}
@@ -36,7 +36,7 @@ function FilledBasket() {
             });
           }}
         >
-          <img src={icon_delete} className='w-[1.5rem]' />
+          <Trash2 className='size-8 stroke-neutral-grayishBlue-300' />
         </button>
       </div>
       <CartButton

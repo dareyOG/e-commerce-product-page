@@ -8,7 +8,7 @@ const initialState = {
   count: 0,
   activeIndex: 0,
   cartlist: [],
-  isProductModalActive: false,
+  isSneakerModal: false,
   isCartModalActive: false,
 };
 
@@ -34,19 +34,22 @@ function reducer(state, action) {
           state.activeIndex === images.length - 1 ? 0 : state.activeIndex + 1,
       };
 
+    case "display_sneaker":
+      return { ...state, activeIndex: action.payload };
+
     case "increase_count":
       return { ...state, count: state.count + 1 };
 
     case "decrease_count":
       return { ...state, count: state.count < 1 ? 0 : state.count - 1 };
 
-    case "add_product_to_cart":
+    case "add_to_cart":
       return {
         ...state,
         cartlist: state.count ? [action.payload] : [],
       };
 
-    case "delete_product_from_cart":
+    case "remove_from_cart":
       return {
         ...state,
         count: 0,
@@ -69,10 +72,10 @@ function reducer(state, action) {
       };
     }
 
-    case "toggle_product_modal":
+    case "toggle_sneaker_modal":
       return {
         ...state,
-        isProductModalActive: state.isProductModalActive ? false : true,
+        isSneakerModal: state.isSneakerModal ? false : true,
       };
 
     case "checkout":
@@ -90,20 +93,11 @@ function SneakerProvider({ children }) {
       count,
       activeIndex,
       cartlist,
-      isProductModalActive,
+      isSneakerModal,
       isCartModalActive,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-
-  const productCount = count;
-
-  const cartProduct = {
-    name: "fall limited edition sneakers",
-    thumbnail: "/images/image-product-1-thumbnail.jpg",
-    unitPrice: 125,
-    quantity: productCount,
-  };
 
   return (
     <SneakerContext.Provider
@@ -112,7 +106,7 @@ function SneakerProvider({ children }) {
         count,
         activeIndex,
         cartlist,
-        isProductModalActive,
+        isSneakerModal,
         isCartModalActive,
         dispatch,
       }}

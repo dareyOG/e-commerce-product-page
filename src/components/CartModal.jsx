@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSneaker } from "../context/SneakerContext";
-import EmptyBasket from "./EmptyBasket";
-import FilledBasket from "./FilledBasket";
+import EmptyBasket from "./EmptyCart";
+import FilledBasket from "./FilledCart";
 
 function CartModal() {
   const { cartlist, dispatch } = useSneaker();
@@ -29,7 +29,7 @@ function CartModal() {
     <div>
       <div className='fixed left-0 top-0 z-0 h-screen w-screen bg-neutral-black/50 lg:hidden'></div>
       <section
-        className='fixed left-[50%] top-[25%] z-20 mx-auto flex h-[23rem] w-[80%] translate-x-[-50%] flex-col rounded-[1.5rem] border-0 bg-neutral-white shadow-2xl md:w-[60%] lg:absolute lg:right-[-60rem] lg:top-[7.5rem] lg:w-[35rem]'
+        className='fixed left-[50%] top-[25%] z-20 mx-auto flex h-[23rem] w-[80%] translate-x-[-50%] flex-col rounded-[1.5rem] border-0 bg-neutral-white shadow-2xl md:w-[60%] lg:absolute lg:right-[-35%] lg:top-[7.5rem] lg:w-[35rem]'
         ref={ref}
       >
         <h1 className='border-b border-neutral-grayishBlue-200 p-8 text-[2rem] font-bold text-neutral-grayishBlue-400'>

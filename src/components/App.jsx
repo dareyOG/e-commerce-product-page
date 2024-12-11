@@ -1,29 +1,29 @@
 import NavList from "./NavList";
 import NavBar from "./NavBar";
-import Main from "./Main";
+import Sneaker from "./Sneaker";
 import Carousel from "./Carousel";
-import Product from "./Product";
-import ProductInfo from "./ProductInfo";
-import ProductCounter from "./ProductCounter";
+import Main from "./Main";
+import SneakerProfile from "./SneakerProfile";
+import Counter from "./Counter";
 import CartModal from "./CartModal";
-import ProductModal from "./ProductModal";
+import SneakerModal from "./SneakerModal";
 import { useSneaker } from "../context/SneakerContext";
 
 function App() {
-  const { isNavActive, isCartModalActive, isProductModalActive } = useSneaker();
+  const { isNavActive, isCartModalActive, isSneakerModal } = useSneaker();
   return (
     <main>
       <NavBar />
       {isNavActive && <NavList />}
-      <Main>
+      <Sneaker>
         <Carousel />
-        <Product>
-          <ProductInfo />
-          <ProductCounter />
-        </Product>
-      </Main>
+        <Main>
+          <SneakerProfile />
+          <Counter />
+        </Main>
+      </Sneaker>
       {isCartModalActive && <CartModal />}
-      {isProductModalActive && <ProductModal />}
+      {isSneakerModal && <SneakerModal />}
     </main>
   );
 }

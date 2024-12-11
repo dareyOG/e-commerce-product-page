@@ -1,8 +1,6 @@
 function Main({ children }) {
   return (
-    <main className='flex flex-col lg:mx-40 lg:flex-row lg:gap-x-[15rem] lg:p-28'>
-      {children}
-    </main>
+    <div className='flex flex-col justify-center gap-6 p-12'>{children}</div>
   );
 }
 

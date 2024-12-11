@@ -1,7 +1,8 @@
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useSneaker } from "../context/SneakerContext";
 import images from "../images";
 
-function ProductModal() {
+function SneakerModal() {
   const { activeIndex, dispatch } = useSneaker();
 
   return (
@@ -17,7 +18,7 @@ function ProductModal() {
               dispatch({ type: "toggle_product_modal" });
             }}
           >
-            <img src='/images/icon-close.svg' alt='close' />
+            <X className='size-8 stroke-neutral-white hover:stroke-primary-orange-200' />
           </div>
           <div className=''>
             {images.map((image, index) => (
@@ -25,27 +26,27 @@ function ProductModal() {
                 <img
                   src={image.url}
                   alt={`product image-${index + 1}`}
-                  className={`w-full ${index === activeIndex ? "block" : "hidden"} lg:rounded-[2rem]`}
+                  className={`w-auto ${index === activeIndex ? "block" : "hidden"} lg:rounded-[2rem]`}
                 />
               </div>
             ))}
           </div>
           <div className='absolute left-1/2 top-1/2 mx-auto flex w-full -translate-x-1/2 -translate-y-1/2 justify-between'>
             <button
-              className='relative left-[-2.5%] rounded-[2rem] bg-neutral-white px-3 py-2'
+              className='relative left-[-3.5%] rounded-full bg-neutral-white stroke-[2.5px] p-2'
               onClick={() => {
                 dispatch({ type: "previous_slide" });
               }}
             >
-              <img src='/images/icon-previous.svg' />
+              <ChevronLeft className='size-8 hover:stroke-primary-orange-200' />
             </button>
             <button
-              className='relative right-[-2.5%] rounded-[2rem] bg-neutral-white px-3 py-2'
+              className='relative right-[-3.5%] rounded-full bg-neutral-white stroke-[2.5px] p-2'
               onClick={() => {
                 dispatch({ type: "next_slide" });
               }}
             >
-              <img src='/images/icon-next.svg' />
+              <ChevronRight className='size-8 hover:stroke-primary-orange-200' />
             </button>
           </div>
         </div>
@@ -53,16 +54,15 @@ function ProductModal() {
           {images.map((image, index) => (
             <div
               key={image.id}
-              className={`w-50 ${index === activeIndex ? "border-[2.7px] border-primary-orange-200" : ""} cursor-pointer rounded-[1.5rem] hover:border-transparent`}
+              className={`w-32 border-[2.7px] ${index === activeIndex ? "border-primary-orange-200" : "border-transparent"} rounded-[1.5rem]`}
             >
               <span
-                className={`fixed aspect-square w-[18.45%] rounded-[1.25rem] ${index === activeIndex ? "bg-neutral-white opacity-45" : ""} opacity-45 hover:bg-neutral-white`}
+                className={`fixed aspect-square w-[7.56rem] rounded-[1.2rem] ${index === activeIndex ? "bg-neutral-white opacity-55" : ""}`}
               ></span>
               <img
                 src={image.url}
                 alt={`product image-${index + 1}`}
                 className='rounded-[1.25rem] object-cover'
-                onClick={() => {}}
               />
             </div>
           ))}
@@ -72,4 +72,4 @@ function ProductModal() {
   );
 }
 
-export default ProductModal;
+export default SneakerModal;
