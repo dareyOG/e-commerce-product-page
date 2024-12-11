@@ -31,7 +31,7 @@ function FilledBasket() {
         <button
           onClick={() => {
             dispatch({
-              type: "delete_product_from_cart",
+              type: "remove_from_cart",
               payload: cartlist.at(0),
             });
           }}

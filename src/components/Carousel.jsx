@@ -10,7 +10,7 @@ function Carousel() {
       <div
         className='relative cursor-pointer'
         onClick={() => {
-          dispatch({ type: "toggle_product_modal" });
+          dispatch({ type: "toggle_sneaker_modal" });
         }}
       >
         {images.map((image, index) => (
@@ -47,7 +47,7 @@ function Carousel() {
             key={image.id}
             className={`w-24 ${index === activeIndex ? "border-[2.67px] border-primary-orange-200" : "border-transparent"} cursor-pointer rounded-[1.8rem]`}
             onClick={() => {
-              dispatch({ type: "show_image", payload: index });
+              dispatch({ type: "display_sneaker", payload: index });
             }}
           >
             <img
