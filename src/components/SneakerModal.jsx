@@ -15,7 +15,7 @@ function SneakerModal() {
             aria-label='close modal'
             className='flex items-center justify-end'
             onClick={() => {
-              dispatch({ type: "toggle_product_modal" });
+              dispatch({ type: "toggle_sneaker_modal" });
             }}
           >
             <X className='size-8 stroke-neutral-white hover:stroke-primary-orange-200' />
